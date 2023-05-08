@@ -2,8 +2,6 @@ const fs = require('fs').promises;
 const path = require('path');
 
 async function copyDir(src, aim) {
-  src = path.join(__dirname, src);
-  aim = path.join(__dirname, aim);
   try {
     await fs.access(aim);
   } catch (error) {
@@ -22,7 +20,7 @@ async function copyDir(src, aim) {
   }
 }
 
-copyDir('files', 'files-copy')
+copyDir(path.join(__dirname, 'files'), path.join(__dirname, 'files-copy'))
   .then(() => console.log('Directory copied successfully'))
   .catch((err) => console.log(err));
 
