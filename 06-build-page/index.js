@@ -38,7 +38,7 @@ async function build() {
   for (let file of files) {
     const filePath = path.join(__dirname, 'components', file);
     const content = await fs.promises.readFile(filePath, 'utf-8');
-    template = template.replace(`{{${path.parse(file).name}}}`, content);
+    template = template.replace(`{{${path.parse(file).name}}}`, ('\n' + content));
   }
 
   
