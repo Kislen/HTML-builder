@@ -12,7 +12,7 @@ async function assembleStyle() {
   const cssTotal = filesContent.join('\n');
 
   const distDir = path.join(__dirname, 'project-dist');
-
+  //await fs.promises.mkdir(distDir, {recursive:true});
   await fs.promises.writeFile(path.join(distDir, 'bundle.css'), cssTotal);
 }
 

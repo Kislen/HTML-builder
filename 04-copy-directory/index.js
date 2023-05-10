@@ -3,10 +3,25 @@ const path = require('path');
 
 async function copyDir(src, aim) {
   try {
+    const folderExists = await fs.stat(aim);
+    if (folderExists.isDirectory()) {
+      await fs.rm(aim, { recursive: true });
+    } else {
+      console.log('Папка "copy-files" не является директорией!');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
     await fs.access(aim);
+    
   } catch (error) {
     await fs.mkdir(aim);
   }
+
+
+
   const files = await fs.readdir(src);
   for (let file of files) {
     const currentSrc = path.join(src, file);
